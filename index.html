@@ -1,557 +1,466 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+ 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arsip Data Siswa</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-        }
-        .card {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            transition: all 0.3s ease-in-out;
-        }
-        .card:hover {
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-        .loader {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid #ffffff;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .input-with-icon {
-            position: relative;
-        }
-        .input-with-icon .icon {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9ca3af;
-        }
-        .input-with-icon input, .input-with-icon select {
-            padding-left: 40px;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta content="web/img/thumbnail.jpg" property="og:image">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="web/lib/animate/animate.min.css">
+    <link rel="stylesheet" href="web/lib/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="web/css/bootstrap.min.css">
+    <link rel="stylesheet" href="web/css/style.css">
+	
+	<link rel="icon" href="web/img/icon.png">
+	<title>MTs Ma'arif 1 Jombang</title>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
 
-    <!-- Kontainer Login / Pencarian -->
-    <div id="login-container" class="w-full max-w-md p-8 space-y-6 card">
-        <div class="text-center">
-            <div class="flex justify-center mx-auto mb-4 text-teal-600">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
-                </svg>
-            </div>
-            <h1 class="text-2xl font-bold text-gray-800">Arsip Digital Data Siswa</h1>
-            <p class="text-gray-500">MTs Ma'arif 1 Jombang</p>
-        </div>
-        
-        <div class="space-y-4">
-            <div class="input-with-icon">
-                <span class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                    </svg>
-                </span>
-                <input type="text" id="searchInput" class="w-full px-4 py-2 border border-teal-600 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Masukkan NISN atau Nama Siswa">
-            </div>
-        </div>
+<body>
+    <div itemprop="image" itemscope="itemscope" itemtype="http://schema.org/ImageObject">
+        <meta content="web/img/thumbnail.jpg" itemprop="url"> 
+    </div>	
+	<div style="background-image:url('web/img/bg.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;background-attachment: fixed;height: 100%;width: 100%;">
 
-        <button id="login-button" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 font-semibold text-white bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m-3-3-3 3m0 0 3 3m-3-3H16.5" />
-            </svg>
-            <span id="login-button-text">Cari Data Siswa</span>
-            <div id="loader" class="loader hidden"></div>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+ 
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img class="img-fluid me-3" src="web/img/icon.png" alt="" style="height: 40px;">
+            <div>
+				<h5 class="m-0 text-primary">MTs MA'ARIF 1</h5>
+				<h6 class="m-0 text-primary">JOMBANG</h6>
+			</div>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <p id="error-message" class="text-red-500 text-sm text-center hidden pt-2"></p>
-    </div>
-
-    <!-- Kontainer Daftar Siswa (Tabel) -->
-    <div id="list-container" class="hidden w-full max-w-4xl p-6 md:p-8 space-y-4 md:space-y-6 card">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-3 md:pb-4 gap-3 md:gap-4">
-             <div class="flex items-center gap-3 w-full sm:w-auto">
-                 <div class="flex-shrink-0 text-teal-600 bg-teal-50 p-2 rounded-full border border-teal-600">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 md:w-8 md:h-8">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
-					</svg>
-                 </div>
-                 <div>
-                     <h1 class="text-lg md:text-2xl font-bold text-gray-800">Arsip Digital Data Siswa</h1>
-                     <p class="text-xs md:text-sm text-gray-500" id="search-result-count">Menampilkan data siswa</p>
-                 </div>
-             </div>
-
-             <!-- Tombol Cari Ulang -->
-             <button id="back-to-search-button" class="w-full sm:w-auto flex-shrink-0 flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-red-700 bg-red-100 border border-teal-600 rounded-md hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-                </svg>
-                <span>Cari Ulang</span>
-            </button>
-        </div>
-
-        <div class="overflow-x-auto rounded-lg border border-teal-600">
-            <table class="w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-4 py-3 sm:px-6 text-center">No</th>
-                        <th scope="col" class="px-4 py-3 sm:px-6 text-center">Foto</th>
-                        <th scope="col" class="px-4 py-3 sm:px-6">Nama Siswa</th>
-                        <th scope="col" class="px-4 py-3 sm:px-6">NISN</th>
-                        <th scope="col" class="px-4 py-3 sm:px-6">Status</th>
-                        <th scope="col" class="px-4 py-3 sm:px-6 text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="student-table-body" class="divide-y divide-gray-200">
-                    <!-- Data akan diisi lewat JavaScript -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Kontainer Detail Arsip Siswa -->
-    <div id="detail-container" class="hidden w-full max-w-4xl p-6 md:p-8 card">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b pb-4 gap-4">
-            <div class="flex items-center gap-3 w-full sm:w-auto">
-                <div class="flex-shrink-0 text-teal-600 bg-teal-50 p-2 rounded-full border border-teal-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 md:w-8 md:h-8">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
-					</svg>
+        <div class="collapse navbar-collapse me-3" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profil</a>
+                    <div class="dropdown-menu fade-down m-0">
+                        <a href="tentang-kami.html" class="dropdown-item">Tentang Kami</a>
+						<a href="struktur-lembaga.html" class="dropdown-item">Struktur Lembaga</a>
+                        <a href="https://www.youtube.com/@mtsmamaarif1jombang/videos" target="_blank" class="dropdown-item">Galeri Kegiatan</a>
+						<a href="berita-terbaru.html" class="dropdown-item">Berita Terbaru</a>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="text-lg md:text-2xl font-bold text-gray-800">Arsip Digital Data Siswa</h1>
-                    <p class="text-xs md:text-sm text-gray-500">MTs Ma'arif 1 Jombang</p>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Data Siswa</a>
+                    <div class="dropdown-menu fade-down m-0">                        
+                        <a href="data-siswa.html" class="dropdown-item">Arsip Digital Data Siswa</a>
+                        <a href="pengumuman-kelulusan.html" class="dropdown-item">Pengumuman Kelulusan</a>
+                    </div>
+                </div>				
+				<a href="ppdb.html" class="nav-item nav-link">PPDB</a>
+                <a href="portal-app.html" class="nav-item nav-link">Portal App</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Cover Start -->
+    <div class="mb-4 container-fluid p-0">
+        <div class="mb-4 owl-carousel header-carousel position-relative">
+			<div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="web/img/cover.jpg">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
+                    <div class="container-xxl">
+                        <div class="row justify-content-start">
+                            <div class="text-center">
+                                <h4 class="text-primary mb-1 animated slideInDown">Selamat Datang di</h4>
+                                <h5 class="text-primary mb-4 animated slideInDown">Website Resmi</h5>
+                                <h2 class="display-6 text-primary mb-0 animated slideInDown">MTs MA'ARIF 1 JOMBANG</h2>
+                                <p class="fs-5 text-primary mb-0 animated slideInDown"><small>Kauman Utara Gg. I/09 Jombang</small></p>
+                            </div>
+							<div class="mb-2 text-center position-absolute" style="bottom: 10px;right: 0px;left: 0px">
+                                <a href="tentang-kami.html" class="btn bg-primary text-white py-0 p-4 me-2 wow fadeInUp" style="border-radius: 20px;"><small>Tentang Kami</small></a>
+                                <a href="ppdb.html" class="btn bg-primary text-white py-0 p-4 me-2 wow fadeInUp" style="border-radius: 20px;"><small>PPDB</small></a>
+                                <a href="portal-app.html" class="btn bg-primary text-white py-0 p-4 me-0 wow fadeInUp" style="border-radius: 20px;"><small>Portal App</small></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <button id="back-button" class="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-red-700 bg-red-100 border border-teal-600 rounded-md hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                </svg>
-                <span>Kembali</span>
-            </button>
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="web/img/cover-1.jpg">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                    <div class="container-xxl">
+                        <div class="row justify-content-start">
+                            <div class="text-center">
+                                <h4 class="text-white mb-1 animated slideInDown">Selamat Datang di</h4>
+                                <h5 class="text-white mb-4 animated slideInDown">Website Resmi</h5>
+                                <h2 class="display-6 text-white mb-0 animated slideInDown">MTs MA'ARIF 1 JOMBANG</h2>
+                                <p class="fs-5 text-white mb-0 animated slideInDown"><small>Kauman Utara Gg. I/09 Jombang</small></p>
+                            </div>
+                            <div class="mb-2 text-center position-absolute" style="bottom: 10px;right: 0px;left: 0px">
+                                <a href="tentang-kami.html" class="btn border text-white py-0 p-4 me-2 wow fadeInUp" style="border-radius: 20px;"><small>Tentang Kami</small></a>
+                                <a href="ppdb.html" class="btn border text-white py-0 p-4 me-2 wow fadeInUp" style="border-radius: 20px;"><small>PPDB</small></a>
+                                <a href="portal-app.html" class="btn border text-white py-0 p-4 me-0 wow fadeInUp" style="border-radius: 20px;"><small>Portal App</small></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="web/img/cover.jpg">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
+                    <div class="container-xxl">
+                        <div class="row justify-content-start">
+                            <div class="text-center">
+                                <h4 class="text-primary mb-1 animated slideInDown">Selamat Datang di</h4>
+                                <h5 class="text-primary mb-4 animated slideInDown">Website Resmi</h5>
+                                <h2 class="display-6 text-primary mb-0 animated slideInDown">MTs MA'ARIF 1 JOMBANG</h2>
+                                <p class="fs-5 text-primary mb-0 animated slideInDown"><small>Kauman Utara Gg. I/09 Jombang</small></p>
+                            </div>
+							<div class="mb-2 text-center position-absolute" style="bottom: 10px;right: 0px;left: 0px">
+                                <a href="tentang-kami.html" class="btn bg-primary text-white py-0 p-4 me-2 wow fadeInUp" style="border-radius: 20px;"><small>Tentang Kami</small></a>
+                                <a href="ppdb.html" class="btn bg-primary text-white py-0 p-4 me-2 wow fadeInUp" style="border-radius: 20px;"><small>PPDB</small></a>
+                                <a href="portal-app.html" class="btn bg-primary text-white py-0 p-4 me-0 wow fadeInUp" style="border-radius: 20px;"><small>Portal App</small></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="web/img/cover-2.jpg">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                    <div class="container-xxl">
+                        <div class="row justify-content-start">
+                            <div class="text-center">
+                                <h4 class="text-white mb-1 animated slideInDown">Selamat Datang di</h4>
+                                <h5 class="text-white mb-4 animated slideInDown">Website Resmi</h5>
+                                <h2 class="display-6 text-white mb-0 animated slideInDown">MTs MA'ARIF 1 JOMBANG</h2>
+                                <p class="fs-5 text-white mb-0 animated slideInDown"><small>Kauman Utara Gg. I/09 Jombang</small></p>
+                            </div>
+                            <div class="mb-2 text-center position-absolute" style="bottom: 10px;right: 0px;left: 0px">
+                                <a href="tentang-kami.html" class="btn border text-white py-0 p-4 me-2 wow fadeInUp" style="border-radius: 20px;"><small>Tentang Kami</small></a>
+                                <a href="ppdb.html" class="btn border text-white py-0 p-4 me-2 wow fadeInUp" style="border-radius: 20px;"><small>PPDB</small></a>
+                                <a href="portal-app.html" class="btn border text-white py-0 p-4 me-0 wow fadeInUp" style="border-radius: 20px;"><small>Portal App</small></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+		<div class="container-xxl">
+            <div class="">
+                <div class="d-flex align-items-center bg-light" style="border-radius: 5px;">
+                    <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="border-radius: 5px; width: 50px; height: 30px;">
+                        <i class="fa fa-bullhorn text-white"></i>
+                    </div>
+                    <div class="text-dark top-0 start-0 d-flex align-items-center">
+                        <marquee>
+							<span class="px-4">Selamat Datang di Portal Website MTs Ma'arif 1 Jombang</span>|
+							<span class="px-4">Lembaga Pendidikan dibawah Naungan PC LP Ma'arif NU Jombang</span>|
+							<span class="px-4">Madrasahnya para Muassis NU</span>|
+                			<span class="px-4">Penerimaan Peserta Didik Baru MTs Ma'arif 1 Jombang Sudah Dibuka</span>|
+							<span class="px-4">Daftar sekarang juga !!!</span>
+                        </marquee>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cover End -->
+	
+	<!-- Kenapa Kami Start -->
+    <div class="mb-4 container-xxl">
+        <div class="card shadow-sm card-body wow fadeInUp" data-wow-delay="0.1s">
+			<div class="row g-4">
+				<div class="col-lg-3 col-sm-3">							
+					<div class="breadcrumb mb-3">
+						<a class="btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;"><i class="fa fa-star"></i></a>
+						<a class="btn bg-orange text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;"><small>Akreditasi</small></a>
+					</div>					
+					<p class="justify mb-0">Madrasah kami ter-akreditasi B, untuk itu kami terus berupaya memberikan layanan pendidikan yang lebih baik lagi guna mendukung masa depan siswa kami</p>
+				</div>
+				<div class="col-lg-3 col-sm-3">
+					<div class="breadcrumb mb-3">
+						<a class="btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;"><i class="fa fa-book-open"></i></a>
+						<a class="btn bg-orange text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;"><small>Kurikulum</small></a>
+					</div>
+					<p class="justify mb-0">Kami menggunakan kurikulum terbaru yang meliputi aspek pengetahuan, keterampilan, sikap, dan perilaku dengan berlandaskan Al-Qur’an dan Sunnah</p>
+				</div>
+				<div class="col-lg-3 col-sm-3">
+					<div class="breadcrumb mb-3">
+						<a class="btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;"><i class="fa fa-graduation-cap"></i></a>
+						<a class="btn bg-orange text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;"><small>Fasilitas</small></a>
+					</div>
+					<p class="justify mb-0">Berbagai macam fasilitas kami sediakan kepada siswa-siswi sebagai penunjang update dan upgrade diri dalam lingkungan dan teknologi untuk masa depan</p>
+				</div>
+				<div class="col-lg-3 col-sm-3">
+					<div class="breadcrumb mb-3">
+						<a class="btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;"><i class="fa fa-trophy"></i></a>
+						<a class="btn bg-orange text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;"><small>Prestasi</small></a>
+					</div>
+					<p class="justify mb-0">Berbagai prestasi telah mampu diraih oleh siswa-siswi madrasah kami dalam berbagai ajang perlombaan baik dalam bidang akademik maupun non akademik</p>
+				</div>
+			</div>
+        </div>
+    </div>
+    <!-- Kenapa Kami End -->
+    
+    <!-- Daftar Sekarang Start -->
+    <div class="mb-4 container-xxl">
+        <div class="card shadow-sm card-body wow fadeInUp" data-wow-delay="0.1s">
+            <div class="text-center">
+				<p class="mb-3">Lembaga Pendidikan Islam yang memadukan metode salaf (ahlussunah wal jamaah) dan kurikulum nasional.</p>
+				<a href="ppdb.html" class="mb-2 btn bg-primary text-white py-2 p-4 wow fadeInUp" style="border:1px solid #00722D;border-radius: 20px">Daftar Sekarang !!!</a>
+            </div>
+        </div>
+    </div>
+	<!-- Daftar Sekarang End -->
+	
+	<!-- Banner PPDB Start -->
+	<div class="mb-4 container-xxl">
+		<div class="card shadow-sm card-body wow fadeInUp" data-wow-delay="0.1s">
+            <img class="img-fluid" style="border-radius: 5px; width: 100%;" src="web/img/banner.jpg">
+        </div>
+    </div>
+	<!-- Banner PPDB End -->	
 		
-		<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div class="flex items-center gap-4">
-                 
-                <!-- WRAPPER FOTO DENGAN FALLBACK STACKING -->
-                <div class="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-full overflow-hidden border border-teal-600 shadow-sm bg-teal-50 flex items-center justify-center">
-                     
-                    <!-- Lapisan 1: Inisial (Tampil jika foto gagal) -->
-                    <span id="detail-initials" class="text-teal-600 text-xl sm:text-2xl font-bold uppercase select-none"></span>
-                     
-                    <!-- Lapisan 2: Foto (Menutupi inisial jika berhasil dimuat) -->
-                    <img id="detail-student-photo" src="" alt="Foto Siswa" class="absolute inset-0 w-full h-full object-cover object-top bg-teal-50">
-                     
+	<!-- Berita Terbaru Start -->
+    <div class="mb-4 container-xxl">
+        <div class="card shadow-sm card-body wow fadeInUp" data-wow-delay="0.1s">
+            <div class="text-center">
+                <h4 class="text-primary mb-4">KEGIATAN² MADRASAH</h4>
+            </div>
+            <div class="mb-4 owl-carousel testimonial-carousel position-relative wow fadeInUp" data-wow-delay="0.3s">
+				
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2025/2025-01-30.jpg">
+                    <p>Kamis, 30 Januari 2025</p>					
+                    <p class="mb-2 text-primary"><b><font size="+1">Kegiatan Peringatan Isra' Mi'raj</font></b></p>
+                    <p class="mb-0">Kaisa Auni Ma'ruf (MTs) - Keutamaan Sholat...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
                 </div>
-                 
-                <div>
-				    <p class="text-xs sm:text-sm text-gray-500">Nama Siswa</p>
-                    <p id="student-name" class="font-semibold text-sm sm:text-base"></p>
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2024/2024-09-14.jpg">
+                    <p>Sabtu, 14 September 2024</p>					
+                    <p class="mb-2 text-primary"><b><font size="+1">Kegiatan Karnaval Desa Jombang</font></b></p>
+                    <p class="mb-0">MTs-MA Ma'arif 1 Jombang ikut berpartisipasi dalam kegiatan Karnaval Desa Jombang Tahun 2024...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2024/2024-08-16.jpg">
+                    <p>Jum'at, 16 Agustus 2024</p>					
+                    <p class="mb-2 text-primary"><b><font size="+1">Kegiatan Lomba Agustusan</font></b></p>
+                    <p class="mb-0">Kegiatan lomba-lomba dalam acara peringatan 17 Agustus 2024 di MTs-MA Ma'arif 1 Jombang...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2024/2024-05-18.jpg">
+                    <p>Sabtu, 18 Mei 2024</p>					
+                    <p class="mb-2 text-primary"><b><font size="+1">Lepas Purna Siswa MTs-MA Ma'arif 1 Jombang TP 2023/2024</font></b></p>
+                    <p class="mb-0">Pada Sabtu (18/05/2024) MTs-MA Ma'arif 1 Jombang mengadakan Wisuda Lepas Purna Siswa yang dilaksanakan di...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2024/2024-05-06.jpg">
+                    <p>Senin, 6 Mei 2024</p>
+					<p class="mb-2 text-primary"><b><font size="+1">Pelaksanaan Asesmen Madrasah TP 2023/2024</font></b></p>
+                    <p class="mb-0">Asesmen Madrasah adalah asesmen sumatif yang diselenggarakan pada akhir jenjang pendidikan madrasah untuk...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2024/2024-04-22a.jpg">
+                    <p>Rabu, 24 April 2024</p>
+					<p class="mb-2 text-primary"><b><font size="+1">Ujian UAMNU dan PTS Genap TP 2023/2024</font></b></p>
+                    <p class="mb-0">Rabu, 24 April 2024 MTS Ma'arif 1 Jombang menggelar Ujian UAMNU dan PTS Genap di hari ketiga pelaksanaan...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2024/2024-02-07b.jpg">
+                    <p>Rabu, 07 Februari 2024</p>
+					<p class="mb-2 text-primary"><b><font size="+1">Peringatan Isra' Mi'raj Nabi Muhammad SAW</font></b></p>
+                    <p class="mb-0">Isra' Mi'raj merupakan salah satu peristiwa penting dalam sejarah Islam. Dalam peristiwa ini, Nabi Muhammad SAW...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2024/2024-01-26b.jpg">
+                    <p>Jum'at, 26 Januari 2024</p>
+					<p class="mb-2 text-primary"><b><font size="+1">Pendampingan Persiapan Akreditasi 2024</font></b></p>
+                    <p class="mb-0">Pengawas Madrasah MTs Ma'arif 1 Jombang, Bapak H. Agus Pramukantoro, M.Pd.I memberikan pendampingan tentang...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>				
+                <div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2023/2023-12-06.jpeg">
+                    <p>Rabu, 06 Desember 2023</p>
+					<p class="mb-2 text-primary"><b><font size="+1">Pelaksanaan Ujian PAS TP 2023/2024</font></b></p>
+                    <p class="mb-0">Madrasah Tsanawiyah Ma'arif 1 Jombang, melaksanakan Penilaian Akhir Semester (PAS) Tahun Pelajaran 2023/2024...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2023/2023-12-05.jpg">
+                    <p>Selasa, 05 Desember 2023</p>
+					<p class="mb-2 text-primary"><b><font size="+1">PKKM Tahun 2023 Berjalan Lancar</font></b></p>
+                    <p class="mb-0">Penilaian Kinerja Kepala Madrasah (PKKM) merupakan suatu proses pengumpulan, pengolahan, analisis, dan...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>				
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2023/2023-11-30.jpeg">
+                    <p>Kamis, 30 Nopember 2023</p>
+					<p class="mb-2 text-primary"><b><font size="+1">Kegiatan Rutin Setiap Jum'at Legi</font></b></p>
+                    <p class="mb-0">Kegiatan pembiasaan keagamaan yang dilaksanakan untuk menumbuhkan karakter religius siswa di madrasah...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2023/2023-11-15.jpg">
+                    <p>Rabu, 15 Nopember 2023</p>
+					<p class="mb-2 text-primary"><b><font size="+1">Sosialisasi PKKM oleh Pengawas</font></b></p>
+                    <p class="mb-0">Penilaian Kinerja Kepala Madrasah (PKKM) merupakan agenda tahunan MTs Ma'arif 1 Jombang. Agenda tersebut...</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
+                </div>                
+				<div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/2023/2023-03-12.jpg">
+                    <p>Ahad, 12 Maret 2023</p>
+					<p class="mb-2 text-primary"><b><font size="+1">Juara Kompetisi Sains dan Matematika</font></b></p>
+                    <p class="mb-0">Lomba Kompetisi Sains dan Kompetisi Matematika Tingkat SMP/MTs Se-Kabupaten Jombang Tahun 2023.</p>
+                    <a href="https://tvdesanews.id/pemenang-kompetisi-sains-dan-kompetisi-matematika-dari-mts-maarif-1-jombang-tingkat-smp-mts-tahun-2023/">Selengkapnya</a>
+                </div>
+                <div class="testimonial-item justify">
+                    <img class="img-fluid mb-2" style="border-radius: 5px;height: 200px;object-fit: cover;" src="web/img/cover-2.jpg">
+                    <p>Dokumentasi Tahun 2021</p>
+					<p class="mb-2 text-primary"><b><font size="+1">Juara 3 Lomba Video Pendek</font></b></p>
+                    <p class="mb-0">Lomba Video Pendek Lagu Mars Ma'arif NU dan Hafalan Nadhom Aqidatul Awam dalam rangka Hari Santri Tahun 2021.</p>
+                    <a href="berita-terbaru.html">Selengkapnya</a>
                 </div>
             </div>
-        </div>
-        
-        <!-- Identitas Pribadi Siswa -->
-		<h3 class="font-semibold text-sm sm:text-base mt-4 mb-2">Identitas Siswa</h3>
-        <div class="bg-gray-50 p-6 sm:p-6 rounded-lg border border-teal-600">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-gray-700">
-                <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18M-7.5 12h22.5" /></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs sm:text-sm text-gray-500">Tempat, Tanggal Lahir</p>
-                        <p id="student-birth" class="font-semibold text-sm sm:text-base"></p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center">
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.952a4.5 4.5 0 01-9 0m9 0a4.5 4.5 0 00-9 0m9 0h.008m-9 0h.008m-9 0h.008m9 0h.008M9 11.25v1.5m3-1.5v1.5m3-1.5v1.5M12 21a9 9 0 110-18 9 9 0 010 18z" /></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs sm:text-sm text-gray-500">Jenis Kelamin</p>
-                        <p id="student-gender" class="font-semibold text-sm sm:text-base"></p>
-                    </div>
-                </div>
-                 <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center">
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" /></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs sm:text-sm text-gray-500">No. Induk</p>
-                        <p id="student-no-induk" class="font-semibold text-sm sm:text-base"></p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center">
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h13.5M5.25 15.75h13.5M8.25 5.25v13.5" /></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs sm:text-sm text-gray-500">No. NISN</p>
-                        <p id="student-nisn" class="font-semibold text-sm sm:text-base"></p>
-                    </div>
-                </div>
-                 <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center">
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" /></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs sm:text-sm text-gray-500">Tahun Masuk</p>
-                        <p id="student-entry-year" class="font-semibold text-sm sm:text-base"></p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center">
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs sm:text-sm text-gray-500">Status</p>
-                        <p id="student-status" class="font-semibold text-sm sm:text-base"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Identitas Orangtua & Alamat -->
-        <h3 class="font-semibold text-sm sm:text-base mt-4 mb-2">Identitas Orangtua & Alamat</h3>
-        <div class="bg-gray-50 p-6 sm:p-6 rounded-lg border border-teal-600">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-gray-700">
-                <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs sm:text-sm text-gray-500">Nama Ayah</p>
-                        <p id="student-father" class="font-semibold text-sm sm:text-base"></p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs sm:text-sm text-gray-500">Nama Ibu</p>
-                        <p id="student-mother" class="font-semibold text-sm sm:text-base"></p>
-                    </div>
-                </div>
-                
-                <div class="flex items-center gap-4 md:col-span-2">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
-                    </div>
-                    <div class="w-full">
-                        <p class="text-xs sm:text-sm text-gray-500">Alamat Lengkap</p>
-                        <p id="student-address" class="font-semibold text-sm sm:text-base break-words"></p>
-                    </div>
-                </div>
+			<div class="text-center">
+                <a href="berita-terbaru.html" class="btn bg-primary text-white py-1 p-4 wow fadeInUp" style="border:1px solid #00722D;border-radius: 20px">Berita Selengkapnya</a>
             </div>
         </div>
     </div>
+    <!-- Berita Terbaru End -->	
+	    
+    <!-- Kontak Start -->
+    <div class="mb-4 container-xxl">
+        <div class="card shadow-sm card-body wow fadeInUp" data-wow-delay="0.1s">			
+			<div class="row g-3 mb-3">
+				<div class="col-lg-6 col-sm-6">
+					<iframe style="border-radius: 5px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d569.0223088568438!2d112.23166039204095!3d-7.536188561664016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e783ff8a8ca64e5%3A0x1cf7f0791900addd!2sMTs%2C%20MA%20Ma&#39;arif%201!5e1!3m2!1sen!2sus!4v1684651966390!5m2!1sen!2sus" width="100%" height="203"></iframe>
+				</div>
+				<div class="col-lg-6 col-sm-6">
+					<div class="d-flex align-items-center mb-3" style="border-radius: 5px;">
+						<div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="border-radius: 30px; width: 56px; height: 56px;">
+							<i class="fa fa-1x fa-map-marker-alt text-white"></i>
+						</div>
+						<div class="ms-3">
+							<p class="mb-0 text-primary"><b><font size="+1">Alamat</font></b></p>
+							<p class="mb-0"><small>Kauman Utara Gg. 1/09 Jombang</small></p>
+						</div>
+					</div>
+					<div class="d-flex align-items-center mb-3" style="border-radius: 5px;">
+						<div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="border-radius: 30px; width: 56px; height: 56px;">
+							<i class="fa fa-1x fa-phone-alt text-white"></i>
+						</div>
+						<div class="ms-3">
+							<p class="mb-0 text-primary"><b><font size="+1">WhatsApp</font></b></p>
+							<p class="mb-0"><small>0857 4840 8728</small></p>
+						</div>
+					</div>
+					<div class="d-flex align-items-center mb-0" style="border-radius: 5px;">
+						<div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="border-radius: 30px; width: 56px; height: 56px;">
+							<i class="fa fa-1x fa-envelope-open text-white"></i>
+						</div>
+						<div class="ms-3">
+							<p class="mb-0 text-primary"><b><font size="+1">Email</font></b></p>
+							<p class="mb-0"><small>maarif1jombang@gmail.com</small></p>
+						</div>
+					</div>
+				</div>						
+			</div>
+			<div class="">
+				<div class="border d-flex align-items-center mb-0" style="border-radius: 5px">
+					<div class="container">
+						<p class="justify py-3 mb-0"><b>Visi Madrasah</b> "Terjaminnya Pendidikan yang Berkualitas, Mantap dalam Iman dan Taqwa, Berilmu Pengetahuan dan Berbudi Pekerti Luhur serta Terampil dalam Seni dan Berdaya Saing"</p>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+    <!-- Kontak End -->	
+	
+	<!-- Portal Aplikasi Start -->
+	<div class="mb-4 container-xxl">
+		<div class="card shadow-sm card-body wow fadeInUp" data-wow-delay="0.1s">
+            <div class="breadcrumb mb-0">
+				<a class="btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="index.html"><i class="fa fa-home"></i></a> 
+				<a class="btn bg-orange text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="portal-app.html"><small>Portal Aplikasi</small></a>
+			</div>
+			<hr>
+			<div class="breadcrumb mb-0">
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="e-absensi.html" target="_blank"><small>Absensi Online</small></a>
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="ardis.html" target="_blank"><small>Arsip Digital Data Siswa</small></a>
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="cek-administrasi.html" target="_blank"><small>Cek Administrasi</small></a>
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="skl.html" target="_blank"><small>Pengumuman Kelulusan</small></a>
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="rdm.html" target="_blank"><small>Rapor RDM</small></a>
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="cbt.html" target="_blank"><small>Ujian CBT</small></a>
+				
+			</div>
+        </div>
+    </div>
+	<!-- Portal Aplikasi End -->
+	
+	<!-- Link Terkait Start -->
+	<div class="mb-0 container-xxl">
+        <div class="card shadow-sm card-body wow fadeInUp" data-wow-delay="0.1s">
+            <div class="breadcrumb mb-0">
+				<a class="btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="index.html"><i class="fa fa-home"></i></a>
+				<a class="btn bg-yellow text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;"><small>Link Terkait</small></a>
+			</div>
+			<hr>
+			<div class="breadcrumb mb-0">
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="https://appmadrasah.kemenag.go.id/web/profile?nsm=121235170044" target="_blank"><small>Profil Madrasah (EMIS)</small></a>						
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="https://referensi.data.kemdikbud.go.id/tabs.php?npsn=20582344" target="_blank"><small>Data Referensi NPSN</small></a>
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="https://e-gsm.edumate.id/schools/mtss-maarif-1-jombang" target="_blank"><small>PPDB e-GSM</small></a>				
+			</div>
+			<div class="breadcrumb mb-0">
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="https://maarif1jombang.blogspot.com" target="_blank"><small>Blogger</small></a>
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="https://fb.com/groups/mts.maarif1jombang" target="_blank"><small>Facebook</small></a>
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="https://www.youtube.com/@mts.maarif1jombang" target="_blank"><small>Youtube</small></a>
+				<a class="mb-2 btn bg-primary text-white py-md-0 px-md-2 me-1 wow fadeInUp" style="border-radius: 5px;" href="https://www.twibbonize.com/u/mts.maarif1jombang" target="_blank"><small>Twibbonize</small></a>
+			</div>
+        </div>
+	</div>
+	<!-- Link Terkait End -->
 
-<script>
-    // =========================================================================
-    // 1. PENGATURAN DATA SPREADSHEET
-    // =========================================================================
-    const dataSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS51SPigUdsaQalGMPtTJ6O2KR0pEkWYvHvrnPKsDM4CN7ggbCioUtnGK5l6v-v_wXflCAqKaiKGGq9/pub?gid=0&single=true&output=csv';
+	<footer class=" footer py-3 text-center text-white"><small>Portal Website <a href="https://maarif1jombang.my.id" class="text-decoration-none"><b> MTs-MA Ma'arif 1 Jombang</b></a></small></footer>
 
-    // =========================================================================
-    // 2. PENGATURAN LINK HOSTING FOTO (SANGAT PENTING!)
-    // =========================================================================
-    const URL_FOLDER_FOTO = 'https://maarif1jombang.my.id/mts/foto/'; 
-    const FORMAT_FOTO = '.jpg'; 
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg-square back-to-top"><i class="fa fa-2x fa-arrow-alt-circle-up"></i></a>
 
-    // Konfigurasi Kolom
-    const columns = {
-        nama: 'Nama Siswa',
-        tempatLahir: 'Tempat Lahir',
-        tanggalLahir: 'Tanggal Lahir',
-        jenisKelamin: 'Jenis Kelamin',
-        noInduk: 'No Induk',
-        nisn: 'NISN',
-        tahunMasuk: 'Tahun Masuk',
-        status: 'Status',
-        kelas: 'Kelas',
-        namaAyah: 'Nama Ayah',
-        namaIbu: 'Nama Ibu',
-        alamat: 'Alamat'
-    };
-    // =========================================================================
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="web/lib/wow/wow.min.js"></script>
+    <script src="web/lib/easing/easing.min.js"></script>
+    <script src="web/lib/waypoints/waypoints.min.js"></script>
+    <script src="web/lib/owlcarousel/owl.carousel.min.js"></script>
 
-    const loginContainer = document.getElementById('login-container');
-    const detailContainer = document.getElementById('detail-container');
-    const listContainer = document.getElementById('list-container');
+    <!-- Template Javascript -->
+    <script src="web/js/main.js"></script>
     
-    const loginButton = document.getElementById('login-button');
-    const backButton = document.getElementById('back-button');
-    const backToSearchButton = document.getElementById('back-to-search-button');
-    
-    const searchInputElem = document.getElementById('searchInput');
-    const errorMessage = document.getElementById('error-message');
-    const studentTableBody = document.getElementById('student-table-body');
-    const searchResultCount = document.getElementById('search-result-count');
-
-    let studentListCache = null;
-    let currentSearchResults = [];
-
-    // FUNGSI PARSER CSV BARU: Menangani kutip dua dan koma di dalam kalimat
-    function parseCSV(str) {
-        const arr = [];
-        let quote = false;  // Penanda jika sedang berada di dalam teks yang diapit "..."
-        let row = 0, col = 0;
-
-        for (let c = 0; c < str.length; c++) {
-            let cc = str[c], nc = str[c+1];
-            arr[row] = arr[row] || [];
-            arr[row][col] = arr[row][col] || '';
-
-            // Jika ketemu dua buah kutip dua ("") di dalam kutip, anggap sebagai satu karakter kutip
-            if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
-            // Toggle mode kutip
-            if (cc == '"') { quote = !quote; continue; }
-            // Koma di luar mode kutip berarti pindah kolom
-            if (cc == ',' && !quote) { ++col; continue; }
-            // Enter (CRLF atau LF) di luar mode kutip berarti pindah baris
-            if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
-            if (cc == '\n' && !quote) { ++row; col = 0; continue; }
-            if (cc == '\r' && !quote) { ++row; col = 0; continue; }
-
-            // Selain kondisi di atas, tambahkan karakternya ke sel yang sedang aktif
-            arr[row][col] += cc;
-        }
-        
-        if (arr.length < 2) return [];
-        const headers = arr[0].map(h => h.trim());
-        const data = [];
-        
-        for (let i = 1; i < arr.length; i++) {
-            const values = arr[i];
-            // Abaikan baris kosong
-            if (values.length === 1 && values[0].trim() === '') continue;
-            
-            const obj = {};
-            headers.forEach((header, index) => {
-                obj[header] = values[index] ? values[index].trim() : '';
-            });
-            data.push(obj);
-        }
-        return data;
-    }
-
-    async function fetchAndProcessData() {
-        if (studentListCache) return studentListCache;
-
-        try {
-            const cacheBuster = `&_=${new Date().getTime()}`;
-            const response = await fetch(dataSheetUrl + cacheBuster);
-            if (!response.ok) { throw new Error(`Gagal menghubungi server.`); }
-            
-            const csvText = await response.text();
-            // Menggunakan parser CSV yang baru
-            const rawData = parseCSV(csvText);
-            
-            studentListCache = rawData.map(row => ({
-                nama: row[columns.nama] || '-',
-                tempatLahir: row[columns.tempatLahir] || '-',
-                tanggalLahir: row[columns.tanggalLahir] || '-',
-                jenisKelamin: row[columns.jenisKelamin] || '-',
-                noInduk: row[columns.noInduk] || '-',
-                nisn: row[columns.nisn] || '-',
-                tahunMasuk: row[columns.tahunMasuk] || '-',
-                status: row[columns.status] || '-',
-                kelas: row[columns.kelas] || '-',
-                namaAyah: row[columns.namaAyah] || '-',
-                namaIbu: row[columns.namaIbu] || '-',
-                alamat: row[columns.alamat] || '-'
-            }));
-
-            return studentListCache;
-        } catch (error) {
-            errorMessage.textContent = 'Gagal mengambil data. Periksa koneksi internet.';
-            errorMessage.classList.remove('hidden');
-            return null;
-        }
-    }
-    
-    function getInitials(name) {
-        if (!name) return '??';
-        const parts = name.trim().split(/\s+/);
-        if (parts.length === 0) return '??';
-        if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
-        return (parts[0][0] + parts[1][0]).toUpperCase();
-    }
-
-    function showStudentDetails(student) {
-        if (!student) return;
-        
-        document.getElementById('student-name').textContent = student.nama;
-        document.getElementById('student-birth').textContent = `${student.tempatLahir}, ${student.tanggalLahir}`;
-        document.getElementById('student-gender').textContent = student.jenisKelamin;
-        document.getElementById('student-no-induk').textContent = student.noInduk;
-        document.getElementById('student-nisn').textContent = student.nisn;
-        document.getElementById('student-entry-year').textContent = student.tahunMasuk;
-        document.getElementById('student-status').textContent = `${student.status} ${student.kelas}`;
-        
-        document.getElementById('student-father').textContent = student.namaAyah;
-        document.getElementById('student-mother').textContent = student.namaIbu;
-        document.getElementById('student-address').textContent = student.alamat;
-
-        const photoEl = document.getElementById('detail-student-photo');
-        const initialsEl = document.getElementById('detail-initials');
-        const expectedPhotoUrl = `${URL_FOLDER_FOTO}${student.nisn}${FORMAT_FOTO}`;
-        
-        initialsEl.textContent = getInitials(student.nama);
-        photoEl.style.display = 'block';
-        photoEl.src = expectedPhotoUrl;
-        
-        photoEl.onerror = function() {
-            this.style.display = 'none';
-        };
-
-        loginContainer.classList.add('hidden');
-        listContainer.classList.add('hidden');
-        detailContainer.classList.remove('hidden');
-    }
-
-    function showStudentList(students) {
-        studentTableBody.innerHTML = '';
-        searchResultCount.textContent = `Ditemukan ${students.length} data siswa`;
-
-        students.forEach((student, index) => {
-            const tr = document.createElement('tr');
-            tr.className = 'bg-white hover:bg-teal-50 transition duration-150 border-b';
-            
-            const expectedPhotoUrl = `${URL_FOLDER_FOTO}${student.nisn}${FORMAT_FOTO}`;
-            const initials = getInitials(student.nama);
-            
-            tr.innerHTML = `
-                <td class="whitespace-nowrap px-4 py-3 sm:px-6 text-gray-900 text-center font-medium">${index + 1}</td>
-                <td class="whitespace-nowrap px-4 py-3 sm:px-6 text-center">
-                    <div class="relative w-10 h-10 flex-shrink-0 rounded-full overflow-hidden bg-teal-50 border border-teal-600 flex items-center justify-center">
-                        <span class="text-teal-600 text-xs font-bold select-none">${initials}</span>
-                        <img src="${expectedPhotoUrl}" 
-                             alt="${student.nama}" 
-                             class="absolute inset-0 w-full h-full object-cover object-top bg-teal-50" 
-                             onerror="this.style.display='none';">
-                    </div>
-                </td>
-                <td class="whitespace-nowrap px-4 py-3 sm:px-6 text-gray-900 text-left font-medium">${student.nama}</td>
-                <td class="whitespace-nowrap px-4 py-3 sm:px-6 text-gray-500 text-left">${student.nisn}</td>
-                <td class="whitespace-nowrap px-4 py-3 sm:px-6 text-gray-500 text-left">${student.kelas}</td>
-                <td class="whitespace-nowrap px-4 py-3 sm:px-6 text-gray-500 text-center">
-                    <button class="px-3 py-1.5 text-xs font-medium text-white bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition duration-300 btn-detail" data-nisn="${student.nisn}">Lihat</button>
-                </td>
-            `;
-            studentTableBody.appendChild(tr);
-        });
-
-        document.querySelectorAll('.btn-detail').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const nisn = e.target.getAttribute('data-nisn');
-                const student = students.find(s => s.nisn === nisn);
-                if (student) showStudentDetails(student);
-            });
-        });
-
-        loginContainer.classList.add('hidden');
-        detailContainer.classList.add('hidden');
-        listContainer.classList.remove('hidden');
-    }
-    
-    function setLoading(isLoading) {
-        if (isLoading) {
-            loginButton.disabled = true;
-            document.getElementById('login-button-text').textContent = 'Mencari...';
-            document.getElementById('loader').classList.remove('hidden');
-            errorMessage.classList.add('hidden');
-        } else {
-            loginButton.disabled = false;
-            document.getElementById('login-button-text').textContent = 'Cari Data Siswa';
-            document.getElementById('loader').classList.add('hidden');
-        }
-    }
-
-    async function handleLogin() {
-        const searchInput = searchInputElem.value.trim();
-        if (!searchInput) {
-            errorMessage.textContent = 'Input tidak boleh kosong.';
-            errorMessage.classList.remove('hidden');
-            return;
-        }
-
-        setLoading(true);
-        const allStudents = await fetchAndProcessData();
-        setLoading(false);
-
-        if (!allStudents) return;
-        
-        const searchLower = searchInput.toLowerCase();
-        
-        const matches = allStudents.filter(s => {
-            const matchNisn = s.nisn === searchInput;
-            const matchName = s.nama && s.nama.toLowerCase().includes(searchLower);
-            const matchClass = s.kelas && s.kelas.toLowerCase().includes(searchLower);
-            
-            return matchNisn || matchName || matchClass;
-        });
-        
-        currentSearchResults = matches;
-
-        if (matches.length === 0) {
-            errorMessage.textContent = 'Data tidak ditemukan. Periksa NISN, Nama, atau Kelas.';
-            errorMessage.classList.remove('hidden');
-        } else if (matches.length === 1) {
-            showStudentDetails(matches[0]);
-        } else {
-            showStudentList(matches);
-        }
-    }
-
-    function handleBack() {
-        if (currentSearchResults && currentSearchResults.length > 1) {
-             showStudentList(currentSearchResults);
-        } else {
-             resetToSearch();
-        }
-    }
-
-    function resetToSearch() {
-        searchInputElem.value = '';
-        detailContainer.classList.add('hidden');
-        listContainer.classList.add('hidden');
-        loginContainer.classList.remove('hidden');
-        errorMessage.classList.add('hidden');
-        currentSearchResults = [];
-    }
-
-    loginButton.addEventListener('click', handleLogin);
-    backButton.addEventListener('click', handleBack);
-    backToSearchButton.addEventListener('click', resetToSearch);
-    
-    searchInputElem.addEventListener('keyup', (event) => {
-        if (event.key === 'Enter') handleLogin();
-    });
-    
-    document.addEventListener('DOMContentLoaded', () => {
-       fetchAndProcessData();
-    });
-
-</script>
+    <style type="text/css">.justify {text-align: justify;}</style>
+    <style>.card {border: 1px solid #eff2f5;border-radius: 10px;box-shadow: none;}</style>
+    <style>.card-body {padding: 1.5rem 1.5rem;}</style>
+	<style>.bg-yellow {background: #ffc107;}</style>
+	<style>.bg-orange {background: #f4623a;}</style>
 </body>
+
 </html>
