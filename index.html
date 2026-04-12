@@ -442,19 +442,25 @@
 
 	<footer class=" footer py-3 text-center text-white"><small>Portal Website <a href="https://maarif1jombang.my.id" class="text-decoration-none"><b> MTs-MA Ma'arif 1 Jombang</b></a></small></footer>
 
-    <!-- Bottom Navigation Bar (WhatsApp Style) -->
-    <div class="bottom-nav-menu d-flex justify-content-around bg-white shadow-lg d-lg-none">
-        <a href="https://maarif1jombang.my.id" class="nav-item text-center text-decoration-none py-2 px-3">
-            <i class="fas fa-home fs-2 mb-1"></i>
-            <span class="d-block" style="font-size: 14px; font-weight: 600;">Beranda</span>
+	<!-- Bottom Navigation Bar (WhatsApp Style) -->
+    <div class="bottom-nav-menu d-flex justify-content-around bg-white shadow-lg d-lg-none py-2">
+        <a href="https://maarif1jombang.my.id" class="nav-item text-center text-decoration-none">
+            <div class="icon-wrapper mx-auto">
+                <i class="fas fa-home"></i>
+            </div>
+            <span class="d-block" style="font-size: 13px; font-weight: 600;">Beranda</span>
         </a>
-        <a href="index.html" class="nav-item active text-center text-decoration-none py-2 px-3">
-            <i class="fas fa-globe fs-2 mb-1"></i>
-            <span class="d-block" style="font-size: 14px; font-weight: 600;">Website MTs</span>
+        <a href="index.html" class="nav-item active text-center text-decoration-none">
+            <div class="icon-wrapper mx-auto">
+                <i class="fas fa-globe"></i>
+            </div>
+            <span class="d-block" style="font-size: 13px; font-weight: 600;">Website MTs</span>
         </a>
-        <a href="https://ma.maarif1jombang.my.id" class="nav-item text-center text-decoration-none py-2 px-3">
-            <i class="fas fa-globe fs-2 mb-1"></i>
-            <span class="d-block" style="font-size: 14px; font-weight: 600;">Website MA</span>
+        <a href="https://ma.maarif1jombang.my.id" class="nav-item text-center text-decoration-none">
+            <div class="icon-wrapper mx-auto">
+                <i class="fas fa-globe"></i>
+            </div>
+            <span class="d-block" style="font-size: 13px; font-weight: 600;">Website MA</span>
         </a>
     </div>
 	
@@ -465,8 +471,6 @@
     <script src="web/settings/easing.min.js"></script>
     <script src="web/settings/waypoints.min.js"></script>
     <script src="web/settings/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
     <script src="web/settings/main.js"></script>
     
     <style type="text/css">.justify {text-align: justify;}</style>
@@ -494,23 +498,46 @@
             right: 0;
             z-index: 1030;
             padding-bottom: env(safe-area-inset-bottom); /* Fix untuk iPhone */
+            border-top: 1px solid #eaeaea; /* Garis batas atas halus */
         }
         .bottom-nav-menu .nav-item {
             color: #6c757d; /* Warna abu-abu saat tidak aktif */
             transition: all 0.3s ease;
             width: 33.33%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Efek Aktif (Beranda atau halaman yang sedang dibuka) */
-        .bottom-nav-menu .nav-item.active,
-        .bottom-nav-menu .nav-item:hover {
-            color: #00722D !important; /* Warna hijau tema */
-            background-color: rgba(0, 114, 45, 0.05); /* Background sangat tipis saat aktif */
+        /* Wadah Ikon untuk Bentuk Kapsul (Pill) */
+        .bottom-nav-menu .icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px; /* Lebar kapsul */
+            height: 32px; /* Tinggi kapsul */
+            border-radius: 16px; /* Agar ujungnya bulat (setengah dari tinggi) */
+            margin-bottom: 1px;
+            transition: background-color 0.3s ease;
         }
 
-        .bottom-nav-menu .nav-item.active i,
+        .bottom-nav-menu .icon-wrapper i {
+            font-size: 1.4rem;
+            color: #6c757d; /* Warna ikon saat tidak aktif */
+            transition: color 0.3s ease;
+        }
+
+        /* Efek Aktif (Halaman yang sedang dibuka) */
+        .bottom-nav-menu .nav-item.active .icon-wrapper {
+            background-color: rgba(0, 114, 45, 0.15); /* Warna hijau muda transparan */
+        }
+
+        .bottom-nav-menu .nav-item.active .icon-wrapper i {
+            color: #00722D; /* Warna ikon menjadi hijau gelap sesuai tema */
+        }
+
         .bottom-nav-menu .nav-item.active span {
-            color: #00722D !important;
+            font-weight: 700 !important; /* Membuat teks sedikit lebih tebal saat aktif */
         }
         
         /* Memberikan jarak padding bawah agar konten website tidak tertutup menu */
